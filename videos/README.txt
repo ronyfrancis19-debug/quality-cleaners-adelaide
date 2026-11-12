@@ -33,10 +33,12 @@ and videos/hero.webm, with images/hero-poster.jpg as the poster frame.
 Now in this folder
 ------------------
 
-  commercial-cleaning.mp4   1280×720 H.264 + AAC, faststart
-  steam-cleaning.mp4        1280×720 H.264 + AAC, faststart
-  carpet-shampooing.mp4      1280×720 H.264 + AAC, faststart
+  commercial-cleaning.mp4   1280×720 H.264, no audio, faststart
+  steam-cleaning.mp4        1280×720 H.264, no audio, faststart
+  carpet-shampooing.mp4      1280×720 H.264, no audio, faststart
 
 Posters for those pages live at images/commercial-cleaning-poster.jpg
 and images/steam-cleaning-poster.jpg.
 The carpet shampooing poster is images/carpet-shampooing-poster.jpg.
+
+Service videos play automatically, muted, and loop, with no player controls.

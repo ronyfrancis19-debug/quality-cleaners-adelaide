@@ -150,6 +150,35 @@
     var video = videoWrap.querySelector("video");
     var placeholder = videoWrap.querySelector(".video-placeholder");
     if (video && placeholder) {
+      var motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      function armAutoplay() {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.autoplay = true;
+        video.controls = false;
+        video.setAttribute("muted", "");
+        video.setAttribute("loop", "");
+        video.setAttribute("playsinline", "");
+        video.setAttribute("autoplay", "");
+        video.removeAttribute("controls");
+      }
+
+      function playService() {
+        armAutoplay();
+        if (motion.matches || document.hidden) {
+          video.pause();
+          try { video.currentTime = 0; } catch (err) {}
+          return;
+        }
+        var play = video.play();
+        if (play && typeof play.catch === "function") {
+          play.catch(function () {});
+        }
+      }
+
       function showPlaceholder() {
         placeholder.hidden = false;
         video.setAttribute("hidden", "");
@@ -161,7 +190,23 @@
         video.removeAttribute("hidden");
         videoWrap.classList.add("is-ready");
         videoWrap.classList.remove("is-pending");
+        playService();
       }
+
+      armAutoplay();
+      video.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        playService();
+      });
+      video.addEventListener("pause", function () {
+        if (!motion.matches && !document.hidden && videoWrap.classList.contains("is-ready")) {
+          playService();
+        }
+      });
+      if (motion.addEventListener) motion.addEventListener("change", playService);
+      else if (motion.addListener) motion.addListener(playService);
+      document.addEventListener("visibilitychange", playService);
       video.addEventListener("loadedmetadata", showVideo);
       video.addEventListener("canplay", showVideo);
       video.addEventListener("error", showPlaceholder);

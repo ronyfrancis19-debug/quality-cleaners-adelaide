@@ -541,6 +541,7 @@ a.service-card:focus-visible .service-more {
   height: 100%;
   object-fit: contain;
   background: #1a100e;
+  pointer-events: none;
 }
 .video-frame video[hidden] { display: none; }
 .video-placeholder {
