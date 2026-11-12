@@ -318,14 +318,14 @@ p:last-child { margin-bottom: 0; }
 .hero-overlay {
   z-index: 1;
   pointer-events: none;
-  /* Cream wash over the copy, fading to a darker tint so the film stays visible. */
+  /* Lighter cream wash so both cleaners in the film stay visible. */
   background: linear-gradient(
     105deg,
-    rgba(250, 247, 242, 0.97) 0%,
-    rgba(250, 247, 242, 0.95) 36%,
-    rgba(243, 235, 225, 0.70) 52%,
-    rgba(36, 23, 20, 0.28) 78%,
-    rgba(36, 23, 20, 0.38) 100%
+    rgba(250, 247, 242, 0.63) 0%,
+    rgba(250, 247, 242, 0.62) 36%,
+    rgba(243, 235, 225, 0.46) 52%,
+    rgba(36, 23, 20, 0.18) 78%,
+    rgba(36, 23, 20, 0.25) 100%
   );
 }
 .hero-media {
@@ -350,6 +350,23 @@ p:last-child { margin-bottom: 0; }
 }
 .hero-copy {
   max-width: 36rem;
+  text-shadow:
+    0 1px 0 rgba(250, 247, 242, 0.92),
+    0 0 18px rgba(250, 247, 242, 0.8),
+    0 0 36px rgba(250, 247, 242, 0.5);
+}
+.hero-copy h1 {
+  text-shadow:
+    0 1px 0 rgba(250, 247, 242, 0.95),
+    0 0 20px rgba(250, 247, 242, 0.88),
+    0 0 40px rgba(250, 247, 242, 0.6);
+}
+.hero-copy .btn,
+.hero-copy .btn-ghost {
+  text-shadow: none;
+}
+.hero-copy .btn-ghost {
+  background: rgba(250, 247, 242, 0.86);
 }
 
 @media (max-width: 879px) {
@@ -360,10 +377,10 @@ p:last-child { margin-bottom: 0; }
   .hero-overlay {
     background: linear-gradient(
       180deg,
-      rgba(250, 247, 242, 0.97) 0%,
-      rgba(250, 247, 242, 0.94) 42%,
-      rgba(243, 235, 225, 0.55) 64%,
-      rgba(36, 23, 20, 0.30) 100%
+      rgba(250, 247, 242, 0.63) 0%,
+      rgba(250, 247, 242, 0.61) 42%,
+      rgba(243, 235, 225, 0.36) 64%,
+      rgba(36, 23, 20, 0.20) 100%
     );
   }
   .hero-inner {
