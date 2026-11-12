@@ -6,3 +6,4 @@ preview-service-*.png
 .env.*
 !.env.example
 preview-hero-*.png
+preview-*-video.png

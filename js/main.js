@@ -162,11 +162,12 @@
         videoWrap.classList.add("is-ready");
         videoWrap.classList.remove("is-pending");
       }
-      showPlaceholder();
       video.addEventListener("loadedmetadata", showVideo);
       video.addEventListener("canplay", showVideo);
       video.addEventListener("error", showPlaceholder);
-      if (video.error) showPlaceholder();
+      if (video.error || video.hasAttribute("hidden") || videoWrap.classList.contains("is-pending")) {
+        showPlaceholder();
+      }
       try { video.load(); } catch (err) { showPlaceholder(); }
     }
   }

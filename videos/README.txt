@@ -29,3 +29,12 @@ Homepage hero (already in this folder)
 
 Do not rename these files. The homepage looks for them at videos/hero.mp4
 and videos/hero.webm, with images/hero-poster.jpg as the poster frame.
+
+Now in this folder
+------------------
+
+  commercial-cleaning.mp4   1280×720 H.264 + AAC, faststart
+  steam-cleaning.mp4        1280×720 H.264 + AAC, faststart
+
+Posters for those pages live at images/commercial-cleaning-poster.jpg
+and images/steam-cleaning-poster.jpg.
