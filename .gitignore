@@ -1,2 +1,7 @@
 preview-desktop.png
 preview-mobile.png
+preview-service-*.png
+.vercel/
+.env
+.env.*
+!.env.example

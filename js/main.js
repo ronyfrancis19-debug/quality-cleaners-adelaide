@@ -51,6 +51,34 @@
   }
 
   if (form) {
+    var params = new URLSearchParams(window.location.search);
+    var raw = (params.get("service") || "").trim();
+    if (raw) {
+      var select = form.elements.service;
+      var slugMap = {
+        "domestic-cleaning": "Domestic cleaning",
+        "commercial-cleaning": "Commercial cleaning",
+        "end-of-lease-cleaning": "End-of-lease / exit cleaning",
+        "end-of-lease": "End-of-lease / exit cleaning",
+        "carpet-shampooing": "Carpet shampooing",
+        "steam-cleaning": "Steam cleaning",
+        "general-deep-cleaning": "General deep cleaning"
+      };
+      var target = slugMap[raw] || slugMap[raw.toLowerCase()] || raw;
+      var matched = false;
+      for (var i = 0; i < select.options.length; i++) {
+        var opt = select.options[i];
+        if (opt.value === target || opt.text === target || opt.value.toLowerCase() === raw.toLowerCase()) {
+          select.selectedIndex = i;
+          matched = true;
+          break;
+        }
+      }
+      if (matched) {
+        select.focus({ preventScroll: true });
+      }
+    }
+
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       var fields = ["name", "phone", "email", "suburb", "service"];
@@ -114,4 +142,31 @@
       }
     });
   }
+
+  var videoWrap = document.querySelector("[data-service-video]");
+  if (videoWrap) {
+    var video = videoWrap.querySelector("video");
+    var placeholder = videoWrap.querySelector(".video-placeholder");
+    if (video && placeholder) {
+      function showPlaceholder() {
+        placeholder.hidden = false;
+        video.setAttribute("hidden", "");
+        videoWrap.classList.add("is-pending");
+        videoWrap.classList.remove("is-ready");
+      }
+      function showVideo() {
+        placeholder.hidden = true;
+        video.removeAttribute("hidden");
+        videoWrap.classList.add("is-ready");
+        videoWrap.classList.remove("is-pending");
+      }
+      showPlaceholder();
+      video.addEventListener("loadedmetadata", showVideo);
+      video.addEventListener("canplay", showVideo);
+      video.addEventListener("error", showPlaceholder);
+      if (video.error) showPlaceholder();
+      try { video.load(); } catch (err) { showPlaceholder(); }
+    }
+  }
+
 })();
