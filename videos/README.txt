@@ -20,3 +20,12 @@ Once you add the MP4, the video player appears automatically — no code
 changes are needed. A short landscape (16:9) MP4 works best.
 
 Do not rename the files or put them in a subfolder.
+
+Homepage hero (already in this folder)
+--------------------------------------
+
+  hero.mp4     1920×1080 H.264, no audio, faststart
+  hero.webm    1280×720 VP9, no audio (optional fallback)
+
+Do not rename these files. The homepage looks for them at videos/hero.mp4
+and videos/hero.webm, with images/hero-poster.jpg as the poster frame.
